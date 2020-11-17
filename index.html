@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title> ARCAD Fund - A Random A Coin Day Fund </title>
 </head>
 <body>
@@ -148,7 +149,7 @@ svg * {
     <p>I bet by now you're thinking "Oh wow what an amazing idea" and you want a piece of cake.</p>
     <p>You can now buy your very own share of the ARCAD Fund.  After 5 years, when the coins are sold, you'll get x% of the revenue in USD.</p>
 
-    <p>The potential reward is unbounded.  It probably won't be a trillion dollars.</p>
+    <p>The potential reward is <strong>unbounded</strong>.  It probably won't be a trillion dollars.</p>
 
     <p>The cost to join the fund is calculated with the following formula:</p>
     <pre><code>cost = ceil(36525 * equity * (1.06 - years/100) * years) / 100</code></pre>
@@ -156,14 +157,37 @@ svg * {
     <details>
     <summary>Example</summary>
     <form>
-        <label id="equity-example">Equity (2%)</label>
-        <input type="range" name="equity" min="1" max="100" value="2">
+        <label for="equity">Equity (<output id="el1"></output>%)</label>
+        <input id="er" type="range" min="1" max="100" value="2" oninput="compute()">
 
-        <label id="years-example">Years (3)</label>
-        <input type="range" name="years" min="1" max="5" value="3">
+        <label for="years">Years (<output id="yl1"></output>)</label>
+        <input id="yr" type="range" min="1" max="5" value="3" oninput="compute()">
 
-        <p id="cost-example">The total cost to own 2% of the 3 year fund is $18.45.</p>
+        <p>The total cost to own <output id="el2"></output>% of the <output id="yl2">3</output> year fund is $<output id="cl"></output>.</p>
     </form>
+    <script>
+        function compute() {
+            el1 = document.getElementById('el1')
+            el2 = document.getElementById('el2')
+            er = document.getElementById('er')
+
+            yl1 = document.getElementById('yl1')
+            yl2 = document.getElementById('yl2')
+            yr = document.getElementById('yr')
+
+            cl = document.getElementById('cl')
+
+            equity = el1.value = el2.value = er.value
+            equity = equity * 0.01
+            years = yl1.value = yl2.value = yr.value
+
+            cost = Math.ceil(36525 * equity * (1.06 - years/100) * years) / 100
+
+            cl.value = cost
+        }
+
+        compute()
+    </script>
     </details>
 
     <h2>Buy</h2>

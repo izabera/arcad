@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> ARCAD Fund - A Random A Coin Day Fund </title>
+</head>
+<body>
+    <!--
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yegor256/tacit@gh-pages/tacit-css-1.5.1.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+    -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/light.css">
+    <h1>ARCAD Fund - A Random Coin A Day Fund</h1>
+    <p>Hi, I'm a complete rando with zero background in fintech and this is Jackass.</p>
+    <p>I wrote a bot that buys $1 worth of a random shitcoin each day, and I figured that with a bit of luck in 5 years I'll have made enough money to buy a sandwich.  Or a Lambo.  It's just $1 per day so I won't go broke regardless.</p>
+    <details>
+    <summary> Current coins </summary>
+    <table>
+        <thead>
+            <tr>
+                <th>Coin</th>
+                <th>Buy date</th>
+                <th>Quantity</th>
+                <th>Initial value</th>
+                <th>Current value</th>
+                <th>Change</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Acoin</td>
+                <td>1/1/1970</td>
+                <td>1000</td>
+                <td>$0.001</td>
+                <td class="positive">$0.0011</td>
+                <td class="positive">+10%</td>
+            </tr>
+            <tr>
+                <td>Bcoin</td>
+                <td>2/1/1970</td>
+                <td>333</td>
+                <td>$0.03</td>
+                <td class="meh">$0.03</td>
+                <td class="meh">0%</td>
+            </tr>
+            <tr>
+                <td>Ccoin</td>
+                <td>3/1/1970</td>
+                <td>500</td>
+                <td>$0.002</td>
+                <td class="negative">$0.00195</td>
+                <td class="negative">-5%</td>
+            </tr>
+            <tr>
+                <td>Dcoin</td>
+                <td>4/1/1970</td>
+                <td>100</td>
+                <td>$0.01</td>
+                <td class="positive">$0.012</td>
+                <td class="positive">+20%</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>Total</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="positive">+25%</td>
+            </tr>
+        </tfoot>
+    </table>
+    </details>
+
+    <h2> Change over time </h2>
+<style>
+.positive {
+    color:green;
+}
+.negative {
+    color:red;
+}
+.meh {
+    color:gray;
+}
+.chart {
+  height:50%;
+  width:50%;
+  overflow: visible;
+  border: 0 solid #000;
+  border-width: 0 0 0.1rem 0.1rem;
+}
+
+polyline {
+  fill: none;
+}
+
+svg * {
+  vector-effect: non-scaling-stroke;
+}
+
+.x text {
+  text-anchor: middle;
+  dominant-baseline: hanging;
+}
+
+.y text {
+  text-anchor: end;
+  dominant-baseline: middle;
+}
+
+.form-container label
+{
+   display: inline;
+   float: left;
+   text-align: right;
+   width: 6em;
+   margin-right: 1em;
+   margin-top: 0.4em;
+}
+</style>
+<svg class="chart">
+  <g class="x">
+    <text x="0" y="100%" dy="10">0</text>
+    <text x="20%" y="100%" dy="10">2</text>
+    <text x="40%" y="100%" dy="10">4</text>
+    <text x="60%" y="100%" dy="10">6</text>
+    <text x="80%" y="100%" dy="10">8</text>
+    <text x="100%" y="100%" dy="10">10</text>
+  </g>
+  <g class="y">
+    <text dx="-10" y="100%">0</text>
+    <text dx="-10" y="50%">50</text>
+    <text dx="-10" y="0%">100</text>
+  </g>
+  <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+    <polyline
+      points="0,100 10,99 20,96 30,91 40,84 50,75 60,64 70,51 80,36 90,19 100,0"
+      style="stroke: red; stroke-width: 2;"
+    ></polyline>
+  </svg>
+</svg>
+
+    <h2>Price</h2>
+    <p>I bet by now you're thinking "Oh wow what an amazing idea" and you want a piece of cake.</p>
+    <p>You can now buy your very own share of the ARCAD Fund.  After 5 years, when the coins are sold, you'll get x% of the revenue in USD.</p>
+
+    <p>The potential reward is unbounded.  It probably won't be a trillion dollars.</p>
+
+    <p>The cost to join the fund is calculated with the following formula:</p>
+    <pre><code>cost = ceil(36525 * equity * (1.06 - years/100) * years) / 100</code></pre>
+
+    <details>
+    <summary>Example</summary>
+    <form>
+        <label id="equity-example">Equity (2%)</label>
+        <input type="range" name="equity" min="1" max="100" value="2">
+
+        <label id="years-example">Years (3)</label>
+        <input type="range" name="years" min="1" max="5" value="3">
+
+        <p id="cost-example">The total cost to own 2% of the 3 year fund is $18.45.</p>
+    </form>
+    </details>
+
+    <h2>Buy</h2>
+    <form>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="john.doe@gmail.com">
+
+        <label for="percent">Percent (69% left)</label>
+        <input type="number" name="Percent" min="1" max="69" value="1">
+
+        <label for="years">Years</label>
+        <input type="number" name="years" min="1" max="5" value="5">
+
+        <input type="submit" value="Submit" disabled="true">
+    </form>
+</body>
+</html>
